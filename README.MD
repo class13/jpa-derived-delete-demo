@@ -6,7 +6,7 @@ Derived delete queries of JPA repositories cannot be used safely and will produc
 JPA Repository's derived delete queries always fetch entities, before it deletes them. If the entity is deleted between
 the fetch and the delete by another transaction, it results in an unexpected `ObjectOptimisticLockingFailureException`.
 
-## Proof
+## Example
 First we'll look at standard JpaRepository function `deleteById`  
 
 `carRepository.deleteById(1)`  
@@ -92,7 +92,8 @@ threads.forEach { it.start() }
 threads.forEach { it.join() }
 ```
 
-But if instead define an explicit delete query with the `@Query` annotation, we get a single delete query. 
+## Remedy
+If we instead define an explicit delete query with the `@Query` annotation, we get a single delete query. 
 This is safe against `ObjectOptimisticLockingFailureException`.
 
 ```kotlin
@@ -127,5 +128,6 @@ threads.forEach { it.start() }
 threads.forEach { it.join() }
 ```
 
-
+## TL;DR
+Don't use derived deletion queries, use explicit deletion queries instead. :)
 
