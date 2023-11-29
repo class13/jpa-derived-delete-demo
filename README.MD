@@ -79,7 +79,7 @@ Hibernate:
 
 Both of these cases are inherently vulnerable to `ObjectOptimisticLockingFailureException` when running in parallel (which can always happen in rest APIs).
 
-For example deleting by make in 10 parallel thread will run into several `ObjectOptimisticLockingFailureException`:
+For example deleting by make in 10 parallel threads will cause several `ObjectOptimisticLockingFailureException`:
 ```kotlin
 val threads = (1..10).map {
     Thread {
