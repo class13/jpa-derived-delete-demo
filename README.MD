@@ -128,6 +128,10 @@ threads.forEach { it.start() }
 threads.forEach { it.join() }
 ```
 
+## Try for yourself
+In this project you'll find junit tests, that proof this concept, by running parallel deletions against a H2 Database.
+
 ## TL;DR
 Don't use derived deletion queries, use explicit deletion queries instead. :)
+
 
